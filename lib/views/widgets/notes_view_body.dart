@@ -20,12 +20,13 @@ class _NotesBodyState extends State<NotesBody> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Column(
         children: [
           CustomAppbar(
             icon: Icons.search,
             title: 'Notes',
+            onPressed: () {},
           ),
           Expanded(child: ListNotesItem())
         ],
