@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notes_app/views/widgets/custom_search_icon.dart';
 
@@ -7,10 +6,14 @@ class CustomAppbar extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.onPressed,
+    // this.togllebuttom,
+    // required this.togleicon,
   });
   final IconData icon;
   final String title;
   final void Function() onPressed;
+  // final void Function()? togllebuttom;
+  // final Widget togleicon;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,7 +28,8 @@ class CustomAppbar extends StatelessWidget {
           SearchIcon(
             icon: icon,
             onPressed: onPressed,
-          )
+          ),
+          // IconButton(onPressed: onPressed, icon: togleicon)
         ],
       ),
     );

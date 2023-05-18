@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:notes_app/models/note_model.dart';
 
 import '../../cubits/add_note/add_note_cubit.dart';
+import 'colors_list.dart';
 import 'custom_text_buttom.dart';
 import 'custom_text_form_field.dart';
 
@@ -20,8 +21,8 @@ class _AddtoFormState extends State<AddtoForm> {
   final GlobalKey<FormState> form = GlobalKey();
   final AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String? title, content;
-  Notemodel notee =
-      Notemodel(date: '', color: 00, title: 'title', content: 'content');
+  // Notemodel notee =
+  //     Notemodel(date: '', color: 00, title: 'title', content: 'content');
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -61,7 +62,11 @@ class _AddtoFormState extends State<AddtoForm> {
             },
           ),
           const SizedBox(
-            height: 150,
+            height: 30,
+          ),
+          SizedBox(height: 70, child: Colorwidget()),
+          const SizedBox(
+            height: 15,
           ),
           CustomTextButtom(
             onPressed: () {
@@ -71,7 +76,7 @@ class _AddtoFormState extends State<AddtoForm> {
                 form.currentState!.save();
                 Notemodel note = Notemodel(
                     date: formatter.format(now).toString(),
-                    color: 0,
+                    color: Colors.red.value,
                     title: title!,
                     content: content!);
                 BlocProvider.of<AddnoteCubit>(context).addnote(note);
@@ -82,9 +87,88 @@ class _AddtoFormState extends State<AddtoForm> {
                 setState(() {});
               }
             },
-          )
+          ),
         ],
       ),
     );
   }
 }
+
+// class Colorwidget extends StatefulWidget {
+//   // const Colorwidget({
+//   //    super.key,
+//   //  });
+//
+//   List<Color> col = [
+//     Colors.pink,
+//     Colors.orange,
+//     Colors.yellow,
+//     Colors.cyan,
+//     Colors.redAccent,
+//     Colors.lightGreenAccent,
+//     Colors.blueGrey,
+//     Colors.teal,
+//   ];
+//
+//   @override
+//   State<Colorwidget> createState() => _ColorwidgetState();
+// }
+//
+// int activeColorIndex = 0;
+//
+// class _ColorwidgetState extends State<Colorwidget> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListView.builder(
+//       scrollDirection: Axis.horizontal,
+//       itemCount: widget.col.length,
+//       itemBuilder: (BuildContext context, int index) {
+//         return GestureDetector(
+//           onTap: () {
+//             activeColorIndex = index;
+//             BlocProvider.of<AddnoteCubit>(context).color = widget.col[index];
+//             setState(() {});
+//           },
+//           child: ColorItem(
+//             isActive: activeColorIndex == index,
+//             col: widget.col,
+//             index: index,
+//           ),
+//         );
+//       },
+//     );
+//   }
+// }
+//
+// class ColorItem extends StatelessWidget {
+//   const ColorItem({
+//     super.key,
+//     this.isActive = true,
+//     required this.col,
+//     required this.index,
+//   });
+//
+//   final bool isActive;
+//   final List<Color> col;
+//   final int index;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.all(1.0),
+//       child: isActive
+//           ? Container(
+//               decoration: BoxDecoration(
+//                   borderRadius: BorderRadius.circular(40), color: Colors.white),
+//               child: CircleAvatar(
+//                 radius: 40,
+//                 backgroundColor: col[index],
+//               ),
+//             )
+//           : CircleAvatar(
+//               radius: 35,
+//               backgroundColor: col[index],
+//             ),
+//     );
+//   }
+// }

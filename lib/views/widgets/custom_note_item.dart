@@ -17,7 +17,7 @@ class NoteItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5.0),
+      padding: EdgeInsets.all(5.0),
       child: GestureDetector(
         onTap: () {
           Navigator.push(
@@ -30,9 +30,9 @@ class NoteItem extends StatelessWidget {
           );
         },
         child: Container(
-          padding: const EdgeInsets.only(top: 24, left: 16, bottom: 24),
-          decoration: const BoxDecoration(
-            color: Colors.yellow,
+          padding: EdgeInsets.only(top: 24, left: 16, bottom: 24),
+          decoration: BoxDecoration(
+            color: Color(note.color),
             borderRadius: BorderRadius.all(Radius.circular(16)),
           ),
           child: Column(
